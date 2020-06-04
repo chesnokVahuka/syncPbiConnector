@@ -23,17 +23,22 @@
          <div>
              Your url is {{$user->profile->url ?? 'no link'}}
          </div> 
+         <div>
+            posts:  {{$user->posts->count() ?? '0'}}
+        </div> 
           <div>
-             @foreach ($user->posts as $post)
+             <!-- @foreach ($user->posts as $post)
           <div style="max-width:100px;">
             <img src="/storage/{{ $post->image }}" style="width:300px;">
           </div> 
-             @endforeach
+             @endforeach -->
          </div>
         </div>
         <div class="col-9">
             <a href="/p/create"> Add new posts</a>
         </div>
     </div>
+    <example-component user-id="{{  $user->id  }}"></example-component>
+
 </div>
 @endsection

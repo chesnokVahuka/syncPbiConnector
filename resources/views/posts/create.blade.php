@@ -42,6 +42,6 @@
                 Deal_id
             </span>
         </div>
-    </div>
+    </div>  
 </div>
 @endsection
