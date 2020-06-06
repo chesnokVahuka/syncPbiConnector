@@ -22,9 +22,9 @@ Route::post('/follow/{user}', 'FollowsController@store');
 Route::post('/p', 'PostsController@store');
 Route::get('/p/create', 'PostsController@create');
 
-Route::get('/config/deals/', 'DealsController@index');
 Route::get('/config/deals/add', 'DealsController@store');
-
+Route::get('/config/deals/update', 'DealsController@update');
+Route::get('/config/deals/', 'DealsController@index');
 
 Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');
 

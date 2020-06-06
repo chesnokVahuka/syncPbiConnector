@@ -44967,7 +44967,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['userId'],
+    props: ['userId', 'columns'],
 
     mounted: function mounted() {
         console.log('Component mounted.');
@@ -44976,9 +44976,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         getData: function getData() {
-            axios.post('/follow/1').then(function (response) {
-                alert(response);
+            axios.get('/config/deals').then(function (response) {
+                alert(response.data);
             });
+        },
+        test: function test() {
+            alert(this.columns);
         }
     }
 });
@@ -44992,11 +44995,9 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "button",
-      { staticClass: "btn btn-primary", on: { click: _vm.getData } },
-      [_vm._v(" Button ")]
-    )
+    _c("button", { staticClass: "btn btn-primary", on: { click: _vm.test } }, [
+      _vm._v(" Button ")
+    ])
   ])
 }
 var staticRenderFns = []

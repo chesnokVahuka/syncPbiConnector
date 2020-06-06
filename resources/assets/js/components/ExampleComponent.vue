@@ -1,12 +1,12 @@
 <template>
     <div>
-        <button class="btn btn-primary" @click="getData"> Button </button>
+        <button class="btn btn-primary" @click="test"> Button </button>
     </div>
 </template>
 
 <script>
     export default {
-        props: ['userId'],
+        props: ['userId','columns'],
 
         mounted() {
             console.log('Component mounted.')
@@ -14,10 +14,13 @@
 
         methods:{
             getData(){
-                axios.post('/follow/1')
+                axios.get('/config/deals')
                 .then(response => {
-                    alert(response);
+                    alert(response.data);
                 })
+            },
+            test(){
+                alert(this.columns);
             }
         }
     }
