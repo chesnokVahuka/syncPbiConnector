@@ -44965,14 +44965,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['userId', 'columns'],
+    props: ['columns'],
 
     mounted: function mounted() {
         console.log('Component mounted.');
     },
 
+
+    data: function data() {
+
+        return {
+            selected_fields: '',
+            isSelected: true
+        };
+    },
 
     methods: {
         getData: function getData() {
@@ -44981,7 +44994,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         test: function test() {
-            alert(this.columns);
+            this.selected_fields = this.columns;
+            this.isSelected = !this.isSelected;
+            console.log(this.selected_fields);
+            // alert(this.selected_fields);
         }
     }
 });
@@ -44994,10 +45010,24 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("button", { staticClass: "btn btn-primary", on: { click: _vm.test } }, [
-      _vm._v(" Button ")
-    ])
+  return _c("div", { staticClass: "tables_column_name" }, [
+    _c("span", { staticClass: "column_label" }, [
+      _vm._v(_vm._s(this.columns) + " ")
+    ]),
+    _vm._v(" "),
+    _vm.isSelected == false
+      ? _c("img", {
+          attrs: { src: "/svg/accept.svg" },
+          on: { click: _vm.test }
+        })
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.isSelected == true
+      ? _c("img", {
+          attrs: { src: "/svg/delete.svg" },
+          on: { click: _vm.test }
+        })
+      : _vm._e()
   ])
 }
 var staticRenderFns = []

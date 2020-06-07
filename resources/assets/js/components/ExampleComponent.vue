@@ -1,15 +1,28 @@
 <template>
-    <div>
-        <button class="btn btn-primary" @click="test"> Button </button>
+    <div class="tables_column_name">
+        <span class="column_label">{{ this.columns }} </span>
+        <!-- <button class="btn btn-primary" @click="test"> Button </button> -->
+        <img src="/svg/accept.svg" v-if="isSelected == false" @click="test" >
+        <img src="/svg/delete.svg" v-if="isSelected == true" @click="test" >
+
+
     </div>
 </template>
 
 <script>
     export default {
-        props: ['userId','columns'],
+        props: ['columns'],
 
         mounted() {
             console.log('Component mounted.')
+        },
+
+        data:function(){
+
+            return {
+                selected_fields:'',
+                isSelected: true,
+                }
         },
 
         methods:{
@@ -20,7 +33,10 @@
                 })
             },
             test(){
-                alert(this.columns);
+                this.selected_fields = this.columns;
+                this.isSelected = !this.isSelected;
+                console.log(this.selected_fields);
+                // alert(this.selected_fields);
             }
         }
     }

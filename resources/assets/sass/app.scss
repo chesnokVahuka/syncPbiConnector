@@ -12,5 +12,20 @@
 .my_class{
     display: flex;
 }
+
+.tables_column_wrap{
+    display:flex;
+    flex-wrap: wrap;
+}
+
+.tables_column_name{
+    margin: 10px 5px;
+    display: flex;
+}
+
+.column_label{
+    width: 70%;
+    margin-left: 5px;
+}
   
   

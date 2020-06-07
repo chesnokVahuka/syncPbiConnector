@@ -41,7 +41,7 @@
                     <ul class="nav navbar-nav">
                         &nbsp;
                         <li >
-                            <a href="/p/create">Config </a>
+                            <a href="/config">Config </a>
                         </li>
                         <li>
                             <a>FAQ</a>

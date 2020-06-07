@@ -9,7 +9,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
 // use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
-
+use Illuminate\Support\Facades\DB;
 use App\Deal;
 
 class DealsController extends Controller
