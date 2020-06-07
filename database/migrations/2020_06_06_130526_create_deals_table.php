@@ -49,10 +49,10 @@ class CreateDealsTable extends Migration
             $table->string('SOURCE_DESCRIPTION')->nullable();
             $table->unsignedBigInteger('ORIGINATOR_ID')->nullable();
             $table->unsignedBigInteger('ORIGIN_ID')->nullable();
-            $table->unsignedBigInteger('ORIGIN_ID')->nullable();
-            $table->unsignedBigInteger('ORIGIN_ID')->nullable();
-            $table->unsignedBigInteger('ORIGIN_ID')->nullable();
-            $table->unsignedBigInteger('ORIGIN_ID')->nullable();
+            $table->mediumText('UTM_CAMPAIGN')->nullable();
+            $table->mediumText('UTM_CONTENT')->nullable();
+            $table->mediumText('UTM_SOURCE')->nullable();
+            $table->mediumText('UTM_TERM')->nullable();
 
             $table->nullableTimestamps();
         });

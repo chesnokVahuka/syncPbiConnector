@@ -36,6 +36,14 @@
                 this.selected_fields = this.columns;
                 this.isSelected = !this.isSelected;
                 console.log(this.selected_fields);
+
+                axios.get('/deals' ,this.selected_fields)
+                .then(response => {
+                    console.log(response.data);
+                })
+                .catch((error) => {
+                console.log(error);
+                });
                 // alert(this.selected_fields);
             }
         }

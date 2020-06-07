@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
-//use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
 use GuzzleHttp\Pool;
 use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Request;
-// use Illuminate\Support\Facades\Schema;
+// use GuzzleHttp\Psr7\Request;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use App\Deal;
 
 class DealsController extends Controller
 {
+    public $fields = [];
+
     public function __construct(){
         $this->middleware('auth');
     }
@@ -31,24 +32,25 @@ class DealsController extends Controller
         return view('deals.patch', compact('arDeals'));
     }
 
-    public function store(){
+    public function store(Request $request){
+
         $client = new Client();
         $res = $client->get('https://denvic.bitrix24.ru/rest/7319/52n8xldtt8mbi7bg/crm.deal.list/?');
         $responseDeals = json_decode($res->getBody()->getContents(),true);
+
+        $selectedFields = config('fields.deal');
+        
+        dd($selectedFields);
+
+        return $this->fields;
         
 
-        foreach($responseDeals['result'] as $deals){
-            $data[]=[
-                'ID' =>$deals['ID'],
-                'DATE_CREATE'=>$deals['DATE_CREATE']
-                // 'created_at' => \Carbon\Carbon::now(),
-                // 'updated_at' => \Carbon\Carbon::now(),
-            ];
-            // $dealTable = new Deal();
-            // $dealTable->ID = $deals['ID'];
-            // $dealTable->TITLE = $deals['TITLE'];
-            // $dealTable->save();
-        }
+        // foreach($responseDeals['result'] as $deals){
+        //     $data[]=[
+        //         'ID' =>$deals['ID'],
+        //         'DATE_CREATE'=>$deals['DATE_CREATE']
+        //     ];
+        // }
         // dynamic add columns into table
         // Schema::table('deals', function (Blueprint $table) {
         //     $table->unsignedBigInteger('UTM_CAMPAIGN')->nullable();
@@ -57,7 +59,8 @@ class DealsController extends Controller
         //     $table->unsignedBigInteger('UTM_TERM')->nullable();
 
         // });
-        Deal::insert($responseDeals['result']);
+
+        // Deal::insert($responseDeals['result']);
        
     }
 

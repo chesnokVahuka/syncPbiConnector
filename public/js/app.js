@@ -44997,6 +44997,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.selected_fields = this.columns;
             this.isSelected = !this.isSelected;
             console.log(this.selected_fields);
+
+            axios.get('/deals', this.selected_fields).then(function (response) {
+                console.log(response.data);
+            }).catch(function (error) {
+                console.log(error);
+            });
             // alert(this.selected_fields);
         }
     }
