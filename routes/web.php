@@ -26,8 +26,8 @@ Route::get('/p/create', 'PostsController@create');
 
 Route::get('/deals', 'DealFieldController@index');
 
-// Route::get('/config/deals/add', 'DealsController@store');
-Route::get('/config/deals/update', 'DealsController@update');
+Route::get('/config/deals/add', 'DealsController@store');
+Route::get('/config/deals/update', 'DealFieldController@update');
 Route::get('/config/deals/', 'DealsController@index');
 
 Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');

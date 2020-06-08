@@ -44969,13 +44969,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['columns'],
+    props: {
+        columns: String,
+        isSelected: String
+    },
 
     mounted: function mounted() {
         console.log('Component mounted.');
+        console.log(this.selected);
+        console.log(this.isSelected);
     },
 
 
@@ -44983,7 +44987,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         return {
             selected_fields: '',
-            isSelected: true
+            selected: this.isSelected
         };
     },
 
@@ -44995,15 +44999,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         test: function test() {
             this.selected_fields = this.columns;
-            this.isSelected = !this.isSelected;
-            console.log(this.selected_fields);
+            if (this.selected == 'true') {
+                this.selected = 'false';
+            } else {
+                this.selected = 'true';
+            }
+            console.log(this.selected);
 
-            axios.get('/deals', this.selected_fields).then(function (response) {
+            axios.get('/config/deals/update?' + this.selected_fields).then(function (response) {
                 console.log(response.data);
             }).catch(function (error) {
                 console.log(error);
             });
-            // alert(this.selected_fields);
+            alert(this.selected_fields);
         }
     }
 });
@@ -45021,14 +45029,14 @@ var render = function() {
       _vm._v(_vm._s(this.columns) + " ")
     ]),
     _vm._v(" "),
-    _vm.isSelected == false
+    _vm.selected === "false"
       ? _c("img", {
           attrs: { src: "/svg/accept.svg" },
           on: { click: _vm.test }
         })
       : _vm._e(),
     _vm._v(" "),
-    _vm.isSelected == true
+    _vm.selected === "true"
       ? _c("img", {
           attrs: { src: "/svg/delete.svg" },
           on: { click: _vm.test }

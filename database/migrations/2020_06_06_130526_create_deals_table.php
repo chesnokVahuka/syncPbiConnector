@@ -53,6 +53,7 @@ class CreateDealsTable extends Migration
             $table->mediumText('UTM_CONTENT')->nullable();
             $table->mediumText('UTM_SOURCE')->nullable();
             $table->mediumText('UTM_TERM')->nullable();
+            $table->mediumText('UTM_MEDIUM')->nullable();
 
             $table->nullableTimestamps();
         });

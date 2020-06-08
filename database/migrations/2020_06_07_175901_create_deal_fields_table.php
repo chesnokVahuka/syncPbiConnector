@@ -15,7 +15,7 @@ class CreateDealFieldsTable extends Migration
     {
         Schema::create('deal_fields', function (Blueprint $table) {
             $table->increments('fields_id');
-            $table->boolean('ID');
+            $table->boolean('ID')->nullable();
             $table->boolean('TITLE')->nullable();
             $table->boolean('TYPE_ID')->nullable();
             $table->boolean('STAGE_ID')->nullable();
@@ -54,6 +54,7 @@ class CreateDealFieldsTable extends Migration
             $table->boolean('UTM_CONTENT')->nullable();
             $table->boolean('UTM_SOURCE')->nullable();
             $table->boolean('UTM_TERM')->nullable();
+            $table->boolean('UTM_MEDIUM')->nullable();
         });
     }
 

@@ -35,12 +35,14 @@ class DealsController extends Controller
     public function store(Request $request){
 
         $client = new Client();
-        $res = $client->get('https://denvic.bitrix24.ru/rest/7319/52n8xldtt8mbi7bg/crm.deal.list/?');
+        $e = ['ID','TITLE','DATE_CREATE'];        
+        $res = $client->get('https://denvic.bitrix24.ru/rest/7319/52n8xldtt8mbi7bg/crm.deal.list/',
+        ['query' => ['select' => $e]]);
         $responseDeals = json_decode($res->getBody()->getContents(),true);
-
+        
         $selectedFields = config('fields.deal');
         
-        dd($selectedFields);
+        dd($responseDeals);
 
         return $this->fields;
         
