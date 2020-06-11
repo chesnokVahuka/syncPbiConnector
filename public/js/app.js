@@ -44978,7 +44978,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     mounted: function mounted() {
         console.log('Component mounted.');
-        console.log(this.selected);
+        console.log(this.status);
         console.log(this.isSelected);
     },
 
@@ -44987,7 +44987,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         return {
             selected_fields: '',
-            selected: this.isSelected
+            status: this.isSelected
         };
     },
 
@@ -44997,21 +44997,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 alert(response.data);
             });
         },
-        test: function test() {
-            this.selected_fields = this.columns;
-            if (this.selected == 'true') {
-                this.selected = 'false';
-            } else {
-                this.selected = 'true';
-            }
-            console.log(this.selected);
+        select: function select() {
+            var _this = this;
 
-            axios.get('/config/deals/update?' + this.selected_fields).then(function (response) {
+            this.selected_fields = this.columns;
+            if (this.status == 'true') {
+                this.status = 'false';
+            } else {
+                this.status = 'true';
+            }
+            console.log(this.status);
+
+            axios.get('/config/deals/update?' + this.selected_fields + '=' + this.status).then(function (response) {
                 console.log(response.data);
             }).catch(function (error) {
+                if (_this.status == 'true') {
+                    _this.status = 'false';
+                } else {
+                    _this.status = 'true';
+                }
                 console.log(error);
             });
-            alert(this.selected_fields);
         }
     }
 });
@@ -45029,17 +45035,17 @@ var render = function() {
       _vm._v(_vm._s(this.columns) + " ")
     ]),
     _vm._v(" "),
-    _vm.selected === "false"
+    _vm.status == "false"
       ? _c("img", {
           attrs: { src: "/svg/accept.svg" },
-          on: { click: _vm.test }
+          on: { click: _vm.select }
         })
       : _vm._e(),
     _vm._v(" "),
-    _vm.selected === "true"
+    _vm.status == "true"
       ? _c("img", {
           attrs: { src: "/svg/delete.svg" },
-          on: { click: _vm.test }
+          on: { click: _vm.select }
         })
       : _vm._e()
   ])

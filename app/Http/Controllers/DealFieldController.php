@@ -10,29 +10,15 @@ class DealFieldController extends Controller
 {
     public function index(){
         $columns = Schema::getColumnListing('deal_fields');
+
         $fields = DealFields::all();
         if($fields->isEmpty()){
            die;
         }else{
-          $fields = DealFields::first()->toArray();  
-          $selected = [];
-          foreach ($fields as $key=>$value){
-              if($key != 'fields_id'){
-                $selected[$key] = $value;
-              }
-       
-              if($value === "1"){
-                
-              }
-            
-          }    
-          
-        $columns = $selected;
+            $selected = DealFields::getSelectedFields();
+            $columns = $selected;
         // dd($columns);  
         }
-           
-        
-
         return view('deals.index', compact('columns'));
     }
 
@@ -41,9 +27,16 @@ class DealFieldController extends Controller
         if($fields->isEmpty()){
            die;
         }else{
-            $table = DealFields::find(1);  
+            $table = DealFields::find(1); 
             $column = array_keys($request->all())[0];
-            $table-> $column = true;
+            $value = array_values($request->all())[0];
+            
+            if($value == 'true'){
+                $table-> $column = true;
+            }else{
+                $table-> $column = false;
+            }
+           
             $table->save();
         }
         // dd(array_keys($request->all())[0]);

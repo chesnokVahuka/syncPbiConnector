@@ -10,7 +10,15 @@ use GuzzleHttp\Client;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use App\Deal;
+use App\DealFields;
+use GuzzleHttp\Promise;
 
+use Psr\Http\Message\ResponseInterface;
+use GuzzleHttp\Exception\RequestException;
+
+use GuzzleHttp\Promise\EachPromise;
+use GuzzleHttp\Psr7\Response;
+use App\CRest\CRest;
 class DealsController extends Controller
 {
     public $fields = [];
@@ -33,44 +41,46 @@ class DealsController extends Controller
     }
 
     public function store(Request $request){
-
+        $tstart = microtime(true);
+     
         $client = new Client();
-        $e = ['ID','TITLE','DATE_CREATE'];        
-        $res = $client->get('https://denvic.bitrix24.ru/rest/7319/52n8xldtt8mbi7bg/crm.deal.list/',
-        ['query' => ['select' => $e]]);
-        $responseDeals = json_decode($res->getBody()->getContents(),true);
+
+        $fields = array_keys(DealFields::getSelectedFields());  
+        $next = 0;  
+
+       $count = ceil(16106/50);
+      for($i = 1; $i < $count+1; $i++){
+          $starts[] = $i;
+      }
+    //   dd($starts);
+        foreach ($starts as $start){
+            // $promises[] = $client->getAsync('https://denvic.bitrix24.ru/rest/7319/52n8xldtt8mbi7bg/crm.deal.list',
+            //     ['query' => ['select' => $fields,'start' => $start]]);
+            $entitys[] = [
+                'entitys'.$start => [
+                    'method' => 'crm.deal.list',    
+                    'params' => [                          
+                            'start' => ($start-1)*50,
+                        ]     
+                ],
+            ];
+            if(($start % 50 == 0) || ($start == $count)){
+                $arResult[] = CRest::callBatch($entitys);  
+                // $entitys = [];
+            }
+        }
+        dd($arResult);
+   
+        $results = Promise\unwrap($promises);
+
+
+        foreach($results as $result){
+            $data[] = json_decode($result->getBody(),true);
+        }    
         
-        $selectedFields = config('fields.deal');
-        
-        dd($responseDeals);
-
-        return $this->fields;
-        
-
-        // foreach($responseDeals['result'] as $deals){
-        //     $data[]=[
-        //         'ID' =>$deals['ID'],
-        //         'DATE_CREATE'=>$deals['DATE_CREATE']
-        //     ];
-        // }
-        // dynamic add columns into table
-        // Schema::table('deals', function (Blueprint $table) {
-        //     $table->unsignedBigInteger('UTM_CAMPAIGN')->nullable();
-        //     $table->unsignedBigInteger('UTM_CONTENT')->nullable();
-        //     $table->unsignedBigInteger('UTM_SOURCE')->nullable();
-        //     $table->unsignedBigInteger('UTM_TERM')->nullable();
-
-        // });
-
-        // Deal::insert($responseDeals['result']);
-       
-    }
-
-    // while($responseDeals['next'] < 250){
-    //     $current = $responseDeals['next'];
-    //     $res = $client->get('https://denvic.bitrix24.ru/rest/7319/52n8xldtt8mbi7bg/crm.deal.list/?start='.$current);
-    //     $responseDeals = json_decode($res->getBody()->getContents(),true);          
-    // };
-
-  
+        $time = microtime(true) - $tstart;
+        dd($data,$time);
+        return $result;   
+    }   
+    
 }
