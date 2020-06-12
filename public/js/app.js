@@ -963,7 +963,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(10);
-module.exports = __webpack_require__(43);
+module.exports = __webpack_require__(39);
 
 
 /***/ }),
@@ -987,7 +987,7 @@ window.Vue = __webpack_require__(35);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', __webpack_require__(39));
+Vue.component('entity-fields', __webpack_require__(50));
 
 var app = new Vue({
   el: '#app'
@@ -44799,14 +44799,30 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 /* 39 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(40)
+var normalizeComponent = __webpack_require__(51)
 /* script */
-var __vue_script__ = __webpack_require__(41)
+var __vue_script__ = __webpack_require__(52)
 /* template */
-var __vue_template__ = __webpack_require__(42)
+var __vue_template__ = __webpack_require__(53)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -44823,7 +44839,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/ExampleComponent.vue"
+Component.options.__file = "resources/assets/js/components/entityFields.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -44832,9 +44848,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7168fb6a", Component.options)
+    hotAPI.createRecord("data-v-7615c813", Component.options)
   } else {
-    hotAPI.reload("data-v-7168fb6a", Component.options)
+    hotAPI.reload("data-v-7615c813", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -44845,7 +44861,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 40 */
+/* 51 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -44954,7 +44970,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 41 */
+/* 52 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -45023,32 +45039,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 42 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "tables_column_name" }, [
-    _c("span", { staticClass: "column_label" }, [
-      _vm._v(_vm._s(this.columns) + " ")
-    ]),
-    _vm._v(" "),
-    _vm.status == "false"
-      ? _c("img", {
-          attrs: { src: "/svg/accept.svg" },
-          on: { click: _vm.select }
-        })
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.status == "true"
-      ? _c("img", {
-          attrs: { src: "/svg/delete.svg" },
-          on: { click: _vm.select }
-        })
-      : _vm._e()
-  ])
+  return _c(
+    "div",
+    { staticClass: "tables_column_name", on: { click: _vm.select } },
+    [
+      _c(
+        "span",
+        {
+          staticClass: "column_label",
+          class: [this.status == "true" ? "selected" : ""]
+        },
+        [_vm._v(_vm._s(this.columns) + " ")]
+      ),
+      _vm._v(" "),
+      _vm.status == "false"
+        ? _c("img", {
+            staticClass: "entitys_config_svg",
+            attrs: { src: "/svg/plus_12_b.svg" }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.status == "true"
+        ? _c("img", {
+            staticClass: "entitys_config_svg",
+            attrs: { src: "/svg/delete.svg" }
+          })
+        : _vm._e()
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -45056,15 +45081,9 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-7168fb6a", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-7615c813", module.exports)
   }
 }
-
-/***/ }),
-/* 43 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

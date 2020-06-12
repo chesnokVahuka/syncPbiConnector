@@ -5,11 +5,11 @@
     <div class="row tables_column_wrap">
 
         @foreach ($columns as $key => $value)           
-            <div class="col-sm-4 col-xs-12">              
+            <div class="col-sm-4 col-xs-6">              
                 @if ($value == '1')
-                    <example-component columns="{{ $key }}" is-selected = "true" > </example-component>                    
+                    <entity-fields columns="{{ $key }}" is-selected = "true" > </entity-fields>                    
                 @else
-                    <example-component columns="{{ $key }}" is-selected = "false" > </example-component>                    
+                    <entity-fields columns="{{ $key }}" is-selected = "false" > </entity-fields>                    
                 @endif             
             </div>  
         @endforeach

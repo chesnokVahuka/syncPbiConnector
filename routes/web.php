@@ -30,6 +30,7 @@ Route::get('/config/deals/add', 'DealsController@store');
 Route::get('/config/deals/update', 'DealFieldController@update');
 Route::get('/config/deals/', 'DealsController@index');
 
+
 Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');
 
 Auth::routes();

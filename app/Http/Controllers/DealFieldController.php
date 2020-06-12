@@ -8,6 +8,11 @@ use App\Deal;
 
 class DealFieldController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function index(){
         $columns = Schema::getColumnListing('deal_fields');
 
@@ -15,8 +20,7 @@ class DealFieldController extends Controller
         if($fields->isEmpty()){
            die;
         }else{
-            $selected = DealFields::getSelectedFields();
-            $columns = $selected;
+            $columns = DealFields::getAllFields();
         // dd($columns);  
         }
         return view('deals.index', compact('columns'));

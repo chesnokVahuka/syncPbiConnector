@@ -1,9 +1,9 @@
 <template>
-    <div class="tables_column_name">
-        <span class="column_label">{{ this.columns }} </span>
+    <div class="tables_column_name" @click="select">
+        <span class="column_label" :class="[this.status == 'true' ? 'selected' : '']">{{ this.columns }} </span>
         <!-- <button class="btn btn-primary" @click="test"> Button </button> -->
-        <img src="/svg/accept.svg" v-if="status == 'false'" @click="select" >
-        <img src="/svg/delete.svg" v-if="status == 'true'" @click="select" >
+        <img class="entitys_config_svg" src="/svg/plus_12_b.svg" v-if="status == 'false'" >
+        <img class="entitys_config_svg" src="/svg/delete.svg" v-if="status == 'true'" >
 
     </div>
 </template>
