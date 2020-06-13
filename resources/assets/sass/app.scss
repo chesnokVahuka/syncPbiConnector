@@ -25,7 +25,7 @@
 }
 
 .column_label{
-    width: 90%;
+    width: 90%; 
     margin-left: 5px;
     word-wrap:break-word;
     background: #FF8373;
@@ -40,6 +40,17 @@
     margin-left: 5px;
 }
 
+.config_menu_wrapper{
+    display: flex;
+}
+
+.config_menu{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    border: 1px solid lightcoral;
+}
 
 
   

@@ -18,7 +18,7 @@ use GuzzleHttp\Exception\RequestException;
 
 use GuzzleHttp\Promise\EachPromise;
 use GuzzleHttp\Psr7\Response;
-use App\CRest\CRest;
+
 class DealsController extends Controller
 {
     public $fields = [];
@@ -41,6 +41,8 @@ class DealsController extends Controller
     }
 
     public function store(Request $request){ 
+
+        dd($request->all());
         if(Deal::count() != 0){
             return "Deal table isn't empty";
             die;
@@ -76,4 +78,5 @@ class DealsController extends Controller
         }
         return count($insertData);
         }
+       
 }

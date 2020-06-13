@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Schema;
 use App\DealFields;
 use App\Deal;
@@ -46,4 +47,6 @@ class DealFieldController extends Controller
         // dd(array_keys($request->all())[0]);
         return 'saved';
     }
+
+    
 }
