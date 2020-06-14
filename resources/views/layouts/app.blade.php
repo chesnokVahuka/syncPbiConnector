@@ -31,7 +31,7 @@
                     <a class="navbar-brand" style="display: flex;" href="{{ url('/') }}">
                         <!-- {{ config('app.name', 'Laravel') }} -->
                         <div><img src="/svg/settings.svg" style="height: 25px;" class="pr-3"> </div>
-                        <div>syncPbiConnector</div>
+                        <div>BIConnector</div>
                         
                     </a>
                 </div>
@@ -41,16 +41,30 @@
                     <ul class="nav navbar-nav">
                         &nbsp;
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Настройки <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="/config">Config </a></li>
+                                <li><a href="/config">Общие настройки </a></li>
                                 <li><a href="/deals">Deals </a></li>
+                                <li><a href="/dealcategory">Dealcategory</a></li>
+                                <li><a href="/activity">Activity </a></li>
+                                <li><a href="/activitytype">Activitytype </a></li>
+                                <li><a href="/activitystatus">Activitystatus </a></li>
+                                <li><a href="/calllist">Calllist </a></li>
+                                <li><a href="/departmentlist">Departmentlist </a></li>
+                                <li><a href="/sonetgroup">Sonetgroup </a></li>
+                                <li><a href="/elapseditems">Elapseditems </a></li>
+                                <li><a href="/tasklist">Tasklist </a></li>
+                                <li><a href="/statuslist">Statuslist </a></li>
+          
                             </ul>
                             {{-- <a href="/config">Config </a> --}}
                         </li>
                         <li>
-                            <a>FAQ</a>
+                            <a href="/delete">Удаление</a>
                         </li>
+                        <li>
+                            <a href="#">FAQ</a>
+                        </li>                      
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -62,7 +76,7 @@
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                    {{ Auth::user()->username }} <span class="caret"></span>
+                                    {{ Auth::user()->email }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu">

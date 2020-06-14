@@ -1,6 +1,6 @@
 <template>
-    <div class="tables_column_name" @click="select">
-        <span class="column_label" :class="[this.status == 'true' ? 'selected' : '']">{{ this.columns }} </span>
+    <div class="config_param" @click="select">
+        <span class="param_name" :class="[this.status == 'true' ? 'selected' : '']">{{ this.columns }} </span>
         <!-- <button class="btn btn-primary" @click="test"> Button </button> -->
         <img class="entitys_config_svg" src="/svg/plus_12_b.svg" v-if="status == 'false'" >
         <img class="entitys_config_svg" src="/svg/delete.svg" v-if="status == 'true'" >

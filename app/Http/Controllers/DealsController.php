@@ -78,5 +78,9 @@ class DealsController extends Controller
         }
         return count($insertData);
         }
+
+    public function delete(Request $request){        
+        return view('config.delete');
+    }
        
 }

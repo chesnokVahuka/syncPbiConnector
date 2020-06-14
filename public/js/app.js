@@ -48113,34 +48113,30 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "tables_column_name", on: { click: _vm.select } },
-    [
-      _c(
-        "span",
-        {
-          staticClass: "column_label",
-          class: [this.status == "true" ? "selected" : ""]
-        },
-        [_vm._v(_vm._s(this.columns) + " ")]
-      ),
-      _vm._v(" "),
-      _vm.status == "false"
-        ? _c("img", {
-            staticClass: "entitys_config_svg",
-            attrs: { src: "/svg/plus_12_b.svg" }
-          })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.status == "true"
-        ? _c("img", {
-            staticClass: "entitys_config_svg",
-            attrs: { src: "/svg/delete.svg" }
-          })
-        : _vm._e()
-    ]
-  )
+  return _c("div", { staticClass: "config_param", on: { click: _vm.select } }, [
+    _c(
+      "span",
+      {
+        staticClass: "param_name",
+        class: [this.status == "true" ? "selected" : ""]
+      },
+      [_vm._v(_vm._s(this.columns) + " ")]
+    ),
+    _vm._v(" "),
+    _vm.status == "false"
+      ? _c("img", {
+          staticClass: "entitys_config_svg",
+          attrs: { src: "/svg/plus_12_b.svg" }
+        })
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.status == "true"
+      ? _c("img", {
+          staticClass: "entitys_config_svg",
+          attrs: { src: "/svg/delete.svg" }
+        })
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -48295,6 +48291,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -48302,16 +48335,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             type: String
         },
 
-        fields: String
-        // tables: Array,
+        tables: String
     },
 
     mounted: function mounted() {
         console.log('Component mounted.');
-        console.log(this.apikey);
-        // if(this.apikey == undefined){
-        //     this.apikey = 'apikey 123';
-        // }
+        console.log(this.config_params);
         // this.fields_data = JSON.parse(this.fields);
         // this.fields_data = this.fields_data.APIKey;
     },
@@ -48319,7 +48348,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            fields_data: JSON.parse(this.fields)
+            config_params: JSON.parse(this.tables),
+            selected: {}
         };
     },
 
@@ -48327,6 +48357,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         apiKeyUpdate: function apiKeyUpdate() {
             axios.post('/config/update/apikey', {
                 apikey: this.apikey
+            }).then(function (response) {
+                console.log(response.data);
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        configParamsUpdate: function configParamsUpdate(value, key) {
+            if (this.config_params[key] == 'true') {
+                this.config_params[key] = 'false';
+            } else {
+                this.config_params[key] = 'true';
+            };
+
+            console.log(this.config_params);
+            axios.post('/config/update/tables', {
+                tables: this.config_params
             }).then(function (response) {
                 console.log(response.data);
             }).catch(function (error) {
@@ -48353,49 +48399,170 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {},
+    { staticClass: "config_wrap" },
     [
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.apikey,
-            expression: "apikey"
-          }
-        ],
-        attrs: {
-          type: "text",
-          placeholder: "please, insert your Bitrix24 API key"
+      _c(
+        "div",
+        {
+          staticClass: "col-sm-4 col-xs-6 config_param config_param-flex_wrap"
         },
-        domProps: { value: _vm.apikey },
-        on: {
-          change: _vm.apiKeyUpdate,
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.apikey = $event.target.value
-          }
-        }
-      }),
-      _vm._v(" "),
-      _vm._l(_vm.fields_data, function(val, key) {
-        return _c("div", { key: key }, [
-          _c("span", { class: [val == "true" ? "selected" : ""] }, [
-            _vm._v(_vm._s(key))
-          ]),
+        [
+          _c(
+            "label",
+            { staticClass: "col-sm-6 control-label", attrs: { for: "apikey" } },
+            [_vm._v(" Webhook токен")]
+          ),
           _vm._v(" "),
-          _c("span", [_vm._v(_vm._s(val))])
-        ])
-      }),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.apikey,
+                expression: "apikey"
+              }
+            ],
+            staticClass: "config_input",
+            attrs: {
+              name: "apikey",
+              type: "text",
+              placeholder: "please, insert your Bitrix24 API key"
+            },
+            domProps: { value: _vm.apikey },
+            on: {
+              change: _vm.apiKeyUpdate,
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.apikey = $event.target.value
+              }
+            }
+          })
+        ]
+      ),
       _vm._v(" "),
-      _c("span", [_vm._v("AppConfig")])
+      _vm._m(0),
+      _vm._v(" "),
+      _vm._l(_vm.config_params, function(value, key) {
+        return _c(
+          "div",
+          {
+            key: key,
+            staticClass: "col-sm-4 col-xs-6 config_param",
+            on: {
+              click: function($event) {
+                return _vm.configParamsUpdate(value, key)
+              }
+            }
+          },
+          [
+            _c(
+              "span",
+              {
+                staticClass: "param_name",
+                class: [value == "true" ? "selected" : ""]
+              },
+              [_vm._v(_vm._s(key))]
+            ),
+            _vm._v(" "),
+            value == "false"
+              ? _c("img", {
+                  staticClass: "entitys_config_svg",
+                  attrs: { src: "/svg/plus_12_b.svg" }
+                })
+              : _vm._e(),
+            _vm._v(" "),
+            value == "true"
+              ? _c("img", {
+                  staticClass: "entitys_config_svg",
+                  attrs: { src: "/svg/delete.svg" }
+                })
+              : _vm._e()
+          ]
+        )
+      })
     ],
     2
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "col-sm-4 col-xs-6 config_param config_param-flex_wrap" },
+      [
+        _c(
+          "label",
+          { staticClass: "col-sm-8 control-label", attrs: { for: "time" } },
+          [_vm._v(" Время начала синхронизации")]
+        ),
+        _vm._v(" "),
+        _c(
+          "select",
+          { staticClass: "config_input", attrs: { name: "time", id: "" } },
+          [
+            _c("option", { attrs: { value: "09:00" } }, [_vm._v("01:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "09:00" } }, [_vm._v("02:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "09:00" } }, [_vm._v("03:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "09:00" } }, [_vm._v("04:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "09:00" } }, [_vm._v("05:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "09:00" } }, [_vm._v("06:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "09:00" } }, [_vm._v("07:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "09:00" } }, [_vm._v("08:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "09:00" } }, [_vm._v("09:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "10:00" } }, [_vm._v("10:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "11:00" } }, [_vm._v("11:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "12:00" } }, [_vm._v("12:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "13:00" } }, [_vm._v("13:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "14:00" } }, [_vm._v("14:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "14:00" } }, [_vm._v("15:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "14:00" } }, [_vm._v("16:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "14:00" } }, [_vm._v("17:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "14:00" } }, [_vm._v("18:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "14:00" } }, [_vm._v("19:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "14:00" } }, [_vm._v("20:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "14:00" } }, [_vm._v("21:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "14:00" } }, [_vm._v("22:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "14:00" } }, [_vm._v("23:00")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "14:00" } }, [_vm._v("24:00")])
+          ]
+        ),
+        _vm._v(" "),
+        _c("img", {
+          staticClass: "entitys_config_svg",
+          attrs: { src: "/svg/plus_12_b.svg" }
+        })
+      ]
+    )
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

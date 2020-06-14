@@ -9,27 +9,67 @@
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
 
-.tables_column_wrap{
+// .tables_column_wrap{
+//     display:flex;
+//     flex-wrap: wrap;
+//     flex-direction: column;
+//     max-width: 100%;
+//     height: 150vh;
+// }
+
+.config_wrap{
     display:flex;
     flex-wrap: wrap;
     flex-direction: column;
-    max-width: 100%;
-    height: 150vh;
+    align-items: center;
+    // max-width: 100%;
+    height: 80vh;
 }
 
-.tables_column_name{
+
+.config_input{
+    width:92%;
+    padding-left: 5px;  
+}
+
+.delete_description{
+    text-align: center;
+}
+
+// .config_select{
+//     width:92%
+// }
+
+// .tables_column_name{
+//     margin: 10px 5px;
+//     display: flex;
+//     color:#555;
+//     cursor: pointer;
+// }
+
+.config_param{
     margin: 10px 5px;
     display: flex;
     color:#555;
     cursor: pointer;
 }
 
-.column_label{
+.config_param-flex_wrap{
+    flex-wrap: wrap;
+}
+
+.config_param-jc-center{
+    justify-content: center;
+}
+
+.param_name{
     width: 90%; 
     margin-left: 5px;
     word-wrap:break-word;
     background: #FF8373;
     padding-left: 5px;
+
+    display: inline-block;
 }
 
 .selected{

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container my_class">
-    <div class="row tables_column_wrap">
+    <div class="row config_wrap">
 
         @foreach ($columns as $key => $value)           
             <div class="col-sm-4 col-xs-6">              

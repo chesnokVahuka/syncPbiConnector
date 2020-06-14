@@ -29,10 +29,12 @@ Route::get('/deals', 'DealFieldController@index');
 Route::get('/config/deals/add', 'DealsController@store');
 Route::get('/config/deals/update', 'DealFieldController@update');
 Route::get('/config/deals/', 'DealsController@index');
-Route::post('/config/update/apikey', 'HomeController@configUpdateApikey');
-Route::post('/config/update/fields', 'HomeController@configUpdateFields');
-
 Route::get('/config', 'HomeController@config');
+
+Route::post('/config/update/apikey', 'HomeController@configApikeyUpdate');
+Route::post('/config/update/tables', 'HomeController@configTablesUpdate');
+
+Route::get('/delete','DealsController@delete');
 
 Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');
 
