@@ -36,6 +36,8 @@ Route::post('/config/update/tables', 'HomeController@configTablesUpdate');
 
 Route::get('/delete','DealsController@delete');
 
+Route::get('/upload', 'UploadController@init');
+
 Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');
 
 
