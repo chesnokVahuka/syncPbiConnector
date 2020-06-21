@@ -8346,7 +8346,7 @@ button.close {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 80vh;
+  height: 100vh;
 }
 
 .config_input {
